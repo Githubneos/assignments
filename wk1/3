@@ -1,0 +1,115 @@
+## Part 1: Syntax Errors
+```java
+public class SyntaxPractice {
+
+    public static void main(String[] args) {
+        System.out.println("Learning Java");
+        System.out.println("Finding errors is an important skill");
+    }
+}
+
+
+### Questions:
+1) Two errors: a missing semicolon after the first println, and a missing closing quotation mark plus missing semicolon on the second println.
+2) The first line was missing its semicolon at the end.
+3) The second line's string literal was never closed with a final double quote.
+4) No, the compiler often flags the error on the line after the actual mistake, since it doesn't realize a statement is incomplete until it reads the next line.
+
+## Part 2: Another Syntax Challenge
+```java
+public class StudentMessage {
+
+    public static void main(String[] args) {
+        System.out.println("Welcome to the course!");
+        System.out.println("Practice Java every week.");
+    }
+}
+Errors fixed: added the missing opening brace after the class declaration, and added the missing semicolon after the second println.
+
+### Part 3: Runtime Error
+```java
+public class RuntimePractice {
+
+    public static void main(String[] args) {
+        int number = 10;
+        int divisor = 0;
+
+        System.out.println(number / divisor);
+    }
+}
+
+### Questions
+1) No, the compiler accepted it since it's syntactically correct.
+2) During execution, not compilation.
+3) Dividing an integer by zero.
+4) Because the code follows Java's grammar correctly, so the compiler has no reason to reject it. 
+
+```java
+public class RuntimePractice {
+
+    public static void main(String[] args) {
+        int number = 10;
+        int divisor = 2;
+
+        System.out.println(number / divisor);
+    }
+}
+
+## Part 4: Logic Error
+```java
+public class TemperaturePractice {
+
+    public static void main(String[] args) {
+        double celsius = 35;
+        double fahrenheit = (9 / 5) * celsius + 32;
+
+        System.out.println("Celsius: " + celsius);
+        System.out.println("Fahrenheit: " + fahrenheit);
+    }
+}
+
+
+This is incorrect. 35°C should convert to 95°F, not 67°F, because 9 / 5 is integer division in Java and truncates to 1, instead of 1.8.
+
+```java
+public class TemperaturePractice {
+
+    public static void main(String[] args) {
+        double celsius = 35;
+        double fahrenheit = (9.0 / 5.0) * celsius + 32;
+
+        System.out.println("Celsius: " + celsius);
+        System.out.println("Fahrenheit: " + fahrenheit);
+    }
+}
+
+## Part 5: Classify the Errors
+
+Scenario A — Syntax error (missing semicolon)
+Scenario B — Logic error (wrong formula, but still runs and shows a result)
+Scenario C — Runtime error (division by zero during execution)
+Scenario D — Syntax error (unclosed string literal)
+Scenario E — Logic error (wrong calculation, program still runs)
+
+## Part 6: Final Debugging Challenge
+```java
+public class StudentAverage {
+
+    public static void main(String[] args) {
+
+        String studentName = "Jordan";
+        double score1 = 80;
+        double score2 = 90;
+
+        double average = (score1 + score2) / 2;
+
+        System.out.println("Student: " + studentName);
+        System.out.println("Average: " + average);
+    }
+}
+## Check your Understanding
+1) Syntax errors.
+2) Runtime errors.
+3) Logic errors.
+4) Because the program compiles and runs successfully, so nothing signals a problem.
+5) Testing is the only way to confirm the output actually matches what was intended.
