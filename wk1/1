@@ -1,0 +1,95 @@
+# Week 1 Assignment 1
+
+## part 1
+```java
+public class HelloJava {
+
+    public static void main(String[] args) {
+        System.out.println("Hello, Java!");
+    }
+}
+
+## part 2
+```java
+public class HelloJava {
+
+    public static void main(String[] args) {
+        System.out.println("Hello, Java!");
+        System.out.println("I am learning Java programming.");
+        System.out.println("Practice makes programming easier.");
+    }
+}
+
+## part 3
+```java
+public class CourseIntroduction {
+
+    public static void main(String[] args) {
+        System.out.println("Name: Keerthan Karumudi");
+        System.out.println("Course: Java Programming");
+        System.out.println("Goal: I want to learn how software applications are developed.");
+    }
+}
+
+## part 4
+```java
+// Class declaration - the class name "CourseIntroduction" must match the filename CourseIntroduction.java
+public class CourseIntroduction {
+
+    // Main method - the entry point where the program starts running
+    public static void main(String[] args) {
+
+        // Output statements - each uses a String literal (text in double quotes) and ends with a semicolon
+        System.out.println("Name: Jordan Lee");
+        System.out.println("Course: Java Programming");
+        System.out.println("Goal: I want to learn how software applications are developed.");
+
+    } // closing brace for main method
+
+} // closing brace for class
+
+## part 5
+### a)
+```java
+System.out.println("Course: Introduction to Java Programming");
+
+###b )
+```java
+System.out.println("Fun fact: This is my first Java program!");
+
+### c)
+```java
+public class CourseIntroduction {
+
+    public static void main(String[] args) {
+        System.out.println("Course: Introduction to Java Programming");
+        System.out.println("Goal: I want to learn how software applications are developed.");
+        System.out.println("Fun fact: This is my first Java program.");
+        System.out.println("Name: Keerthan Karumudi");
+    }
+}
+
+CourseIntroduction.main(new String[]{});
+
+### d)
+```java
+public class CourseIntroduction {
+
+    public static void main(String[] args) {
+        System.out.println("Course: Introduction to Java Programming");
+        System.out.println();
+        System.out.println("Goal: I want to learn how software applications are developed.");
+        System.out.println("Fun fact: This is my first Java program!");
+        System.out.println("Name: Jordan Lee");
+    }
+}
+
+CourseIntroduction.main(new String[]{});
+
+## Check your Understanding
+1) It's the entry point of the program.
+2) It prints whatevers in the parenthesis.
+3) The semicolon ends the statement. 
+4) For a public class, they must match exactly or the compiler rejects it. 
+5) Nothing, you have to re-run the cell before the new behavior shows up.
+
