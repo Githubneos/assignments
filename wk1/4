@@ -1,0 +1,114 @@
+## Part 1
+
+Input:
+distance, milesPerGallon, pricePerGallon, averageSpeed, numberOfTravelers
+
+Process:
+gallonsNeeded = distance / milesPerGallon
+fuelCost = gallonsNeeded * pricePerGallon
+travelHours = distance / averageSpeed
+costPerTraveler = fuelCost / numberOfTravelers
+
+Output:
+gallonsNeeded, fuelCost, travelHours, wholeHours, remainingMinutes, costPerTraveler
+
+## Part 2–9
+```java
+import java.util.Scanner;
+
+public class TripCostAnalyzer {
+
+    public static void main(String[] args) {
+
+        final int MINUTES_PER_HOUR = 60;
+
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Enter trip distance in miles: ");
+        double distance = input.nextDouble();
+
+        System.out.print("Enter vehicle miles per gallon: ");
+        double milesPerGallon = input.nextDouble();
+
+        System.out.print("Enter fuel price per gallon: ");
+        double pricePerGallon = input.nextDouble();
+
+        System.out.print("Enter average driving speed: ");
+        double averageSpeed = input.nextDouble();
+
+        System.out.print("Enter number of travelers: ");
+        int numberOfTravelers = input.nextInt();
+
+        double gallonsNeeded = distance / milesPerGallon;
+        double fuelCost = gallonsNeeded * pricePerGallon;
+        double travelHours = distance / averageSpeed;
+
+        int wholeHours = (int) travelHours;
+        double fractionalHour = travelHours - wholeHours;
+        int remainingMinutes = (int) (fractionalHour * MINUTES_PER_HOUR);
+
+        double costPerTraveler = fuelCost / numberOfTravelers;
+
+        System.out.println("Gallons needed: " + gallonsNeeded);
+        System.out.println("Fuel cost: " + fuelCost);
+        System.out.println("Travel time: " + travelHours + " hours");
+        System.out.println("Estimated driving time: " + wholeHours + " hours and " + remainingMinutes + " minutes");
+        System.out.println("Fuel cost per traveler: " + costPerTraveler);
+
+        input.close();
+    }
+}
+
+Sample Run (distance 360, mpg 30, price 4.50, speed 60, travelers 3):
+
+Gallons needed: 12.0
+Fuel cost: 54.0
+Travel time: 6.0 hours
+Estimated driving time: 6 hours and 0 minutes
+Fuel cost per traveler: 18.0
+## Part 10
+```java
+System.out.print("Enter additional parking or toll cost: ");
+double additionalCost = input.nextDouble();
+
+double totalTripCost = fuelCost + additionalCost;
+double costPerTraveler = totalTripCost / numberOfTravelers;
+
+System.out.println("Fuel cost: " + fuelCost);
+System.out.println("Total trip cost: " + totalTripCost);
+System.out.println("Fuel cost per traveler: " + costPerTraveler);
+## Part 11
+```java
+int totalMinutes = 335;
+
+int hours = totalMinutes / 60;
+int minutes = totalMinutes % 60;
+
+System.out.println(hours + " hours and " + minutes + " minutes");
+## Part 12
+1) Because both distance and speed are int, Java performs integer division first (350 / 80 = 4, truncated), and only afterward converts that result to a double when assigning it. The decimal part is already gone by the time it's stored.
+2) Cast just one of the operands to double before the division happens, so Java performs floating-point division instead of integer division.
+3)Rewritten with explicit casting:
+
+java
+int distance = 350;
+int speed = 80;
+
+double travelTime = (double) distance / speed;
+
+System.out.println(travelTime);
+
+Corrected output: 4.375
+
+## Part 13
+
+Confirmed: variable names are descriptive (distance, fuelCost, numberOfTravelers), the class name TripCostAnalyzer follows Java naming conventions (PascalCase), the constant MINUTES_PER_HOUR uses uppercase, one Scanner object is used for all input, double is used wherever fractional values matter, division that needs decimal precision avoids unintended integer division, each output line clearly labels its value, and indentation is consistent throughout.
+
+## Check Your Understanding
+1) Fuel prices almost always include cents, and int can't store decimal values at all.
+2) You can't have a fractional person. The count of travelers is always a whole number.
+3) It truncates it completely.
+4) Because Java performs the division using the operands' original types first. If both are int, the fractional part is already lost before the result is ever stored in a double variable.
+5) When converting a raw number of minutes into hours and leftover minutes, the % operator gives you exactly what's left over after dividing out the whole hours.
+6) It makes the code more readable. You'd only update it in one place instead of hunting down every occurrence.
+7) It forces you to clearly separate what data you need, which makes the actual coding step much more organized.
