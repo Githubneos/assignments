@@ -1,0 +1,443 @@
+```java
+// Part 1
+// Method Structure
+//
+// main
+// ├── displayMenu
+// ├── readChoice
+// ├── handleGcd
+// │   └── gcd
+// ├── handlePrime
+// │   └── isPrime
+// ├── handleHexConversion
+// │   ├── hexToDecimal
+// │   └── hexDigitToDecimal
+// └── handleMaximum
+//     └── max (overloaded)
+
+
+// Part 2
+// Create NumericToolkit.java
+
+import java.util.Scanner;
+
+public class NumericToolkit {
+
+    public static void main(String[] args) {
+
+        Scanner input = new Scanner(System.in);
+
+        int choice;
+
+        do {
+
+            displayMenu();
+            choice = readChoice(input);
+
+            switch (choice) {
+
+                // Part 11
+                case 1:
+                    handleGcd(input);
+                    break;
+
+                case 2:
+                    handlePrime(input);
+                    break;
+
+                case 3:
+                    handleHexConversion(input);
+                    break;
+
+                case 4:
+                    handleMaximum(input);
+                    break;
+
+                case 0:
+                    System.out.println("Exiting.");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice.");
+            }
+
+        } while (choice != 0);
+
+        input.close();
+    }
+
+
+    // Part 3
+    // Greatest Common Divisor
+
+    public static int gcd(int first, int second) {
+
+        while (second != 0) {
+
+            int remainder = first % second;
+            first = second;
+            second = remainder;
+        }
+
+        return first;
+    }
+
+
+    // Part 4
+    // Prime Test
+
+    public static boolean isPrime(int number) {
+
+        if (number <= 1) {
+            return false;
+        }
+
+        for (int divisor = 2; divisor <= Math.sqrt(number); divisor++) {
+
+            if (number % divisor == 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+
+    // Part 5
+    // Hexadecimal Digit to Decimal
+
+    public static int hexDigitToDecimal(char digit) {
+
+        if (digit >= '0' && digit <= '9') {
+            return digit - '0';
+        }
+
+        if (digit >= 'A' && digit <= 'F') {
+            return digit - 'A' + 10;
+        }
+
+        if (digit >= 'a' && digit <= 'f') {
+            return digit - 'a' + 10;
+        }
+
+        return -1;
+    }
+
+
+    // Part 5
+    // Hexadecimal to Decimal
+
+    public static int hexToDecimal(String hex) {
+
+        int decimal = 0;
+
+        for (int i = 0; i < hex.length(); i++) {
+
+            int digitValue = hexDigitToDecimal(hex.charAt(i));
+
+            decimal = decimal * 16 + digitValue;
+        }
+
+        return decimal;
+    }
+
+
+    // Part 6
+    // max(int, int)
+
+    public static int max(int a, int b) {
+
+        if (a > b) {
+            return a;
+        } else {
+            return b;
+        }
+    }
+
+
+    // Part 6
+    // max(double, double)
+
+    public static double max(double a, double b) {
+
+        if (a > b) {
+            return a;
+        } else {
+            return b;
+        }
+    }
+
+
+    // Part 6
+    // max(int, int, int)
+
+    public static int max(int a, int b, int c) {
+
+        return max(max(a, b), c);
+    }
+
+
+    // Part 9
+    // Display Menu
+
+    public static void displayMenu() {
+
+        System.out.println();
+        System.out.println("1. Greatest Common Divisor");
+        System.out.println("2. Prime Test");
+        System.out.println("3. Hexadecimal to Decimal");
+        System.out.println("4. Maximum Value");
+        System.out.println("0. Exit");
+    }
+
+
+    // Part 9
+    // Read Choice
+
+    public static int readChoice(Scanner input) {
+
+        System.out.print("Enter your choice: ");
+
+        return input.nextInt();
+    }
+
+
+    // Part 10
+    // GCD Handler
+
+    public static void handleGcd(Scanner input) {
+
+        System.out.print("Enter the first positive integer: ");
+        int first = input.nextInt();
+
+        System.out.print("Enter the second positive integer: ");
+        int second = input.nextInt();
+
+        int result = gcd(first, second);
+
+        System.out.println("GCD: " + result);
+    }
+
+
+    // Part 10
+    // Prime Handler
+
+    public static void handlePrime(Scanner input) {
+
+        System.out.print("Enter an integer: ");
+        int number = input.nextInt();
+
+        boolean result = isPrime(number);
+
+        if (result) {
+            System.out.println(number + " is prime.");
+        } else {
+            System.out.println(number + " is not prime.");
+        }
+    }
+
+
+    // Part 10
+    // Hex Conversion Handler
+
+    public static void handleHexConversion(Scanner input) {
+
+        System.out.print("Enter a hexadecimal number: ");
+        String hex = input.next();
+
+        int result = hexToDecimal(hex);
+
+        System.out.println("Decimal: " + result);
+    }
+
+
+    // Part 10
+    // Maximum Handler
+
+    public static void handleMaximum(Scanner input) {
+
+        System.out.print("Enter the first integer: ");
+        int first = input.nextInt();
+
+        System.out.print("Enter the second integer: ");
+        int second = input.nextInt();
+
+        System.out.print("Enter the third integer: ");
+        int third = input.nextInt();
+
+        int result = max(first, second, third);
+
+        System.out.println("Maximum: " + result);
+    }
+
+
+    // Part 13
+    // Top-Down Stub Exercise
+    //
+    // Before the full handleHexConversion method was created,
+    // the method could be started with this stub:
+    //
+    // public static void handleHexConversion(Scanner input) {
+    //     System.out.println("Hex conversion selected.");
+    // }
+
+
+    // Part 15
+    // Random Character
+
+    public static char randomCharacter(char first, char last) {
+
+        int range = last - first + 1;
+
+        return (char) (first + Math.random() * range);
+    }
+
+
+    // Part 15
+    // Random Lowercase Letter
+
+    public static char randomLowercaseLetter() {
+
+        return randomCharacter('a', 'z');
+    }
+
+
+    // Part 15
+    // Random Uppercase Letter
+
+    public static char randomUppercaseLetter() {
+
+        return randomCharacter('A', 'Z');
+    }
+
+
+    // Part 15
+    // Random Digit
+
+    public static char randomDigit() {
+
+        return randomCharacter('0', '9');
+    }
+}
+
+
+// Part 7
+// Ambiguous Invocation Investigation
+//
+// 1. Why can this call be ambiguous?
+//
+// combine(5, 5) can match both methods because Java can change
+// either integer into a double.
+//
+// 2. How could you make the intended overload clear?
+//
+// Use a decimal for the argument that should be a double.
+// Example: combine(5, 5.0) or combine(5.0, 5).
+//
+// 3. How could you reduce ambiguity?
+//
+// You could give the methods different names.
+// This makes it clear which method should be used.
+
+
+// Part 8
+// Scope Challenge
+//
+// 1. Why does the final statement fail?
+//
+// result was created inside the if statement.
+// It cannot be used outside that block.
+//
+// 2. Where does the scope of result begin and end?
+//
+// Its scope starts when it is declared inside the if statement.
+// Its scope ends at the closing brace of the if statement.
+//
+// 3. Rewrite the method so result can be printed.
+//
+// public static void scopeDemo() {
+//
+//     int value = 10;
+//     int result = 0;
+//
+//     if (value > 0) {
+//         result = value * 2;
+//     }
+//
+//     System.out.println(result);
+// }
+
+
+// Part 12
+// Method Abstraction Review
+//
+// gcd(...)
+//
+// The caller needs to know that it takes two numbers and returns
+// their greatest common divisor. The caller does not need to know
+// how the GCD is calculated.
+//
+// isPrime(...)
+//
+// The caller needs to know that it checks if a number is prime.
+// The caller does not need to know how the method checks it.
+//
+// hexToDecimal(...)
+//
+// The caller needs to know that it converts hexadecimal to decimal.
+// The caller does not need to know how the conversion works.
+//
+// max(...)
+//
+// The caller needs to know that it returns the largest value.
+// The caller does not need to know how the values are compared.
+
+
+// Check Your Understanding
+//
+// 1. Why is stepwise refinement useful for a larger program?
+//
+// It breaks a large program into smaller parts.
+// This makes the program easier to build and test.
+//
+// 2. What is the difference between method abstraction and
+// method implementation?
+//
+// Abstraction describes what a method does.
+// Implementation is the code that makes the method work.
+//
+// 3. What makes two methods valid overloads?
+//
+// They must have the same name.
+// They must have different parameter lists.
+//
+// 4. Why is changing only the return type insufficient for
+// overloading?
+//
+// Java does not use the return type to choose between methods.
+// The parameter list must be different.
+//
+// 5. What causes ambiguous invocation?
+//
+// It happens when more than one method could match the call.
+// Java cannot tell which method you want to use.
+//
+// 6. How does local-variable scope affect method design?
+//
+// A local variable can only be used inside its scope.
+// This means you need to declare variables where they are needed.
+//
+// 7. Why are stubs useful in top-down development?
+//
+// Stubs let you test the program before every method is finished.
+// They help make sure the overall program flow works.
+//
+// 8. Why should utility methods be tested independently?
+//
+// It makes errors easier to find.
+// You can test each method separately.
+//
+// 9. How does method reuse reduce complexity?
+//
+// You can write the code once and use it many times.
+// This prevents duplicate code and makes the program easier to maintain.
