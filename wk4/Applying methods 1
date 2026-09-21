@@ -1,0 +1,198 @@
+// Part 1
+
+import java.util.Scanner;
+
+public class StudentGradeToolkit {
+
+    public static void main(String[] args) {
+
+        Scanner input = new Scanner(System.in);
+
+        // Part 7
+
+        System.out.print("Enter student name: ");
+        String name = input.nextLine();
+
+        System.out.print("Enter score 1: ");
+        double score1 = input.nextDouble();
+
+        System.out.print("Enter score 2: ");
+        double score2 = input.nextDouble();
+
+        System.out.print("Enter score 3: ");
+        double score3 = input.nextDouble();
+
+        if (!isValidScore(score1) ||
+            !isValidScore(score2) ||
+            !isValidScore(score3)) {
+
+            System.out.println("Error: All scores must be between 0 and 100.");
+
+        } else {
+
+            double average = calculateAverage(score1, score2, score3);
+            char grade = determineGrade(average);
+            boolean passing = isPassing(average);
+
+            printReport(name, average, grade, passing);
+        }
+
+
+        // Part 8
+
+        double testScore = 80;
+
+        addBonus(testScore);
+
+        System.out.println(testScore);
+
+        testScore = addBonusAndReturn(testScore);
+
+        System.out.println(testScore);
+
+
+        // Part 9
+
+        double high = highest(score1, score2);
+        high = highest(high, score3);
+
+        System.out.println("Highest Score: " + high);
+
+
+        // Part 10
+
+        System.out.println(isValidScore(-1));
+        System.out.println(isValidScore(0));
+        System.out.println(isValidScore(100));
+        System.out.println(isValidScore(101));
+
+        System.out.println(determineGrade(90));
+        System.out.println(determineGrade(80));
+        System.out.println(determineGrade(70));
+        System.out.println(determineGrade(60));
+        System.out.println(determineGrade(59));
+
+
+        input.close();
+    }
+
+
+    // Part 2
+
+    public static boolean isValidScore(double score) {
+        return score >= 0 && score <= 100;
+    }
+
+
+    // Part 3
+
+    public static double calculateAverage(double score1, double score2, double score3) {
+        return (score1 + score2 + score3) / 3;
+    }
+
+
+    // Part 4
+
+    public static char determineGrade(double average) {
+
+        if (average >= 90) {
+            return 'A';
+        } else if (average >= 80) {
+            return 'B';
+        } else if (average >= 70) {
+            return 'C';
+        } else if (average >= 60) {
+            return 'D';
+        } else {
+            return 'F';
+        }
+    }
+
+
+    // Part 5
+
+    public static boolean isPassing(double average) {
+        return average >= 60;
+    }
+
+
+    // Part 6
+
+    public static void printReport(String name, double average, char grade, boolean passing) {
+
+        System.out.println("----- Student Report -----");
+        System.out.println("Name: " + name);
+        System.out.printf("Average: %.2f%n", average);
+        System.out.println("Grade: " + grade);
+
+        if (passing) {
+            System.out.println("Status: Passing");
+        } else {
+            System.out.println("Status: Failing");
+        }
+    }
+
+
+    // Part 8
+
+    public static void addBonus(double score) {
+        score += 5;
+    }
+
+    public static double addBonusAndReturn(double score) {
+        return score + 5;
+    }
+
+
+    // Part 9
+
+    public static double highest(double a, double b) {
+
+        if (a > b) {
+            return a;
+        } else {
+            return b;
+        }
+    }
+
+
+    // Part 11
+
+    public static int larger(int a, int b) {
+
+        if (a > b) {
+            return a;
+        } else {
+            return b;
+        }
+    }
+}
+
+
+
+
+# Check Your Understanding
+
+## 1. What is the difference between a formal parameter and an argument?
+
+A **formal parameter** is the variable listed in a method's definition. An **argument** is the actual value passed into the method when it is called.
+
+## 2. What is the purpose of a return type?
+
+A **return type** tells you what type of value a method will send back after it runs. For example, `double` means the method returns a decimal number.
+
+## 3. How does a `void` method differ from a value-returning method?
+
+A `void` method does not return a value. A value-returning method returns a specific value, such as an `int`, `double`, `boolean`, or `String`.
+
+## 4. Why does modifying a primitive parameter not change the caller's variable?
+
+Primitive parameters are passed **by value**, meaning the method receives a copy of the variable. Changing the copy does not change the original variable.
+
+## 5. Why are small focused methods easier to test?
+
+Small focused methods are easier to test because each method does one specific job. You can test that job separately and quickly find where a problem occurs.
+
+## 6. How does method reuse reduce repeated code?
+
+Method reuse reduces repeated code because you can write the code once and call the method whenever you need it. This makes the program shorter, easier to update, and less likely to have duplicate errors.
