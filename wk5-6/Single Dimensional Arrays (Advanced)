@@ -1,0 +1,217 @@
+import java.util.Arrays;
+import java.util.Random;
+import java.util.Scanner;
+
+public class ArrayAlgorithmToolkit {
+
+    // Part 1
+    public static int[] generateData(int size, int min, int max) {
+        int[] values = new int[size];
+        Random random = new Random();
+
+        for (int i = 0; i < values.length; i++)
+            values[i] = random.nextInt(max - min + 1) + min;
+
+        return values;
+    }
+
+    // Part 2
+    public static void printArray(int[] values) {
+        for (int value : values)
+            System.out.print(value + " ");
+        System.out.println();
+
+        System.out.println(Arrays.toString(values));
+    }
+
+    // Part 3
+    public static int[] reverse(int[] values) {
+        int[] reversed = new int[values.length];
+
+        for (int i = 0; i < values.length; i++)
+            reversed[i] = values[values.length - 1 - i];
+
+        return reversed;
+    }
+
+    // Part 4
+    public static void selectionSort(int[] values) {
+        for (int i = 0; i < values.length - 1; i++) {
+            int min = i;
+
+            for (int j = i + 1; j < values.length; j++) {
+                if (values[j] < values[min])
+                    min = j;
+            }
+
+            int temp = values[i];
+            values[i] = values[min];
+            values[min] = temp;
+        }
+    }
+
+    // Part 5
+    public static int linearSearch(int[] values, int key) {
+        for (int i = 0; i < values.length; i++) {
+            if (values[i] == key)
+                return i;
+        }
+
+        return -1;
+    }
+
+    // Part 6
+    public static int binarySearch(int[] values, int key) {
+        int low = 0;
+        int high = values.length - 1;
+
+        while (low <= high) {
+            int mid = (low + high) / 2;
+
+            if (values[mid] == key)
+                return mid;
+            else if (values[mid] < key)
+                low = mid + 1;
+            else
+                high = mid - 1;
+        }
+
+        return -1;
+    }
+
+    // Part 8
+    public static void shuffle(int[] values) {
+        Random random = new Random();
+
+        for (int i = values.length - 1; i > 0; i--) {
+            int j = random.nextInt(i + 1);
+
+            int temp = values[i];
+            values[i] = values[j];
+            values[j] = temp;
+        }
+    }
+
+    // Part 9
+    public static void swapFirstTwo(int[] values) {
+        int temp = values[0];
+        values[0] = values[1];
+        values[1] = temp;
+    }
+
+    // Part 10
+    public static double average(int... values) {
+        double sum = 0;
+
+        for (int value : values)
+            sum += value;
+
+        return sum / values.length;
+    }
+
+    // Part 12
+    public static int countOccurrences(int[] values, int key) {
+        int count = 0;
+
+        for (int value : values) {
+            if (value == key)
+                count++;
+        }
+
+        return count;
+    }
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        // Part 13
+        int size = 20;
+
+        if (args.length > 0) {
+            try {
+                size = Integer.parseInt(args[0]);
+
+                if (size < 1)
+                    size = 20;
+
+            } catch (Exception e) {
+                size = 20;
+            }
+        }
+
+        int[] values = generateData(size, 1, 100);
+
+        // Part 10
+        System.out.println(average(4, 8, 12));
+        System.out.println(average(10, 20, 30, 40, 50));
+
+        int choice;
+
+        do {
+            System.out.println("\n1. Display data");
+            System.out.println("2. Reverse data");
+            System.out.println("3. Sort using selection sort");
+            System.out.println("4. Search using linear search");
+            System.out.println("5. Search using binary search");
+            System.out.println("6. Shuffle data");
+            System.out.println("7. Regenerate data");
+            System.out.println("0. Exit");
+            System.out.print("Choice: ");
+
+            choice = input.nextInt();
+
+            if (choice == 1) {
+                printArray(values);
+
+            } else if (choice == 2) {
+                int[] reversed = reverse(values);
+                printArray(reversed);
+
+            } else if (choice == 3) {
+                selectionSort(values);
+                printArray(values);
+
+            } else if (choice == 4) {
+                System.out.print("Enter key: ");
+                int key = input.nextInt();
+                System.out.println("Index: " + linearSearch(values, key));
+
+            } else if (choice == 5) {
+                selectionSort(values);
+
+                System.out.print("Enter key: ");
+                int key = input.nextInt();
+
+                System.out.println("Index: " + binarySearch(values, key));
+
+            } else if (choice == 6) {
+                shuffle(values);
+                printArray(values);
+
+            } else if (choice == 7) {
+                values = generateData(size, 1, 100);
+                printArray(values);
+            }
+
+        } while (choice != 0);
+
+        input.close();
+    }
+}
+
+
+## Check your understanding
+1) Why can binary search eliminate half of the remaining elements?
+It checks the middle value and knows which half cannot contain the key.
+2) What precondition must be satisfied before binary search?
+The array must be sorted.
+3) How does selection sort move values into their final positions?
+It finds the smallest remaining value and swaps it into the correct position.
+4) Why does reverse return a new array while selectionSort modifies the supplied array?
+reverse is required to preserve the original, while selection sort can change the original.
+5) What exactly is passed when an array is supplied as a method argument?
+A copy of the reference to the array is passed.
+6) How does Arrays.binarySearch() relate to Arrays.sort()?
+Arrays.sort() sorts the array so Arrays.binarySearch() can search it correctly.
+7) When are variable-length arguments useful?
+They are useful when a method can accept different numbers of values.
