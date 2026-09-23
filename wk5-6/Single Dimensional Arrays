@@ -1,0 +1,136 @@
+import java.util.Scanner;
+
+public class AssessmentAnalyzer {
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        // Part 1
+        double[] scores = new double[10];
+
+        for (int i = 0; i < scores.length; i++) {
+            do {
+                System.out.print("Enter score " + (i + 1) + ": ");
+                scores[i] = input.nextDouble();
+            } while (scores[i] < 0 || scores[i] > 100);
+        }
+
+        // Part 2
+        printScores(scores);
+
+        // Part 3
+        double average = calculateAverage(scores);
+
+        // Part 4
+        double minimum = findMinimum(scores);
+        double maximum = findMaximum(scores);
+
+        // Part 5
+        int aboveAverage = countAboveAverage(scores, average);
+
+        // Part 6
+        System.out.print("Enter score to find: ");
+        double target = input.nextDouble();
+        System.out.println("Index: " + linearSearch(scores, target));
+
+        // Part 7
+        double[] copy = copyArray(scores);
+        copy[0] = 0;
+        System.out.println("Original: " + scores[0]);
+        System.out.println("Copy: " + copy[0]);
+
+        double[] second = scores;
+        second[0] = 0;
+        System.out.println("Reference: " + scores[0]);
+
+        // Part 8
+        shiftLeft(scores);
+        printScores(scores);
+
+        // Part 9
+        System.out.println("Number of scores: " + scores.length);
+        System.out.printf("Average: %.2f%n", average);
+        System.out.printf("Minimum: %.2f%n", minimum);
+        System.out.printf("Maximum: %.2f%n", maximum);
+        System.out.println("Above average: " + aboveAverage);
+
+        input.close();
+    }
+
+    // Part 2
+    public static void printScores(double[] scores) {
+        for (int i = 0; i < scores.length; i++)
+            System.out.println("Index " + i + ": " + scores[i]);
+    }
+
+    // Part 3
+    public static double calculateAverage(double[] scores) {
+        double sum = 0;
+        for (double score : scores)
+            sum += score;
+        return sum / scores.length;
+    }
+
+    // Part 4
+    public static double findMinimum(double[] scores) {
+        double min = scores[0];
+        for (double score : scores)
+            if (score < min)
+                min = score;
+        return min;
+    }
+
+    public static double findMaximum(double[] scores) {
+        double max = scores[0];
+        for (double score : scores)
+            if (score > max)
+                max = score;
+        return max;
+    }
+
+    // Part 5
+    public static int countAboveAverage(double[] scores, double average) {
+        int count = 0;
+        for (double score : scores)
+            if (score > average)
+                count++;
+        return count;
+    }
+
+    // Part 6
+    public static int linearSearch(double[] scores, double target) {
+        for (int i = 0; i < scores.length; i++)
+            if (scores[i] == target)
+                return i;
+        return -1;
+    }
+
+    // Part 7
+    public static double[] copyArray(double[] source) {
+        double[] copy = new double[source.length];
+        for (int i = 0; i < source.length; i++)
+            copy[i] = source[i];
+        return copy;
+    }
+
+    // Part 8
+    public static void shiftLeft(double[] scores) {
+        double first = scores[0];
+
+        for (int i = 0; i < scores.length - 1; i++)
+            scores[i] = scores[i + 1];
+
+        scores[scores.length - 1] = first;
+    }
+}
+
+1) Why is the last valid index length - 1?
+Because array indexes start at 0. So an array with 10 elements has indexes 0 through 9.
+2) When is an enhanced for loop preferable to an indexed loop?
+When you only need the values and do not need the index.
+3) Why does simple array assignment not create an independent copy?
+Because both variables point to the same array in memory.
+4) What does a linear search return when the target is absent?
+It returns -1.
+5) Why can a method modify elements of an array passed to it?
+Because the method receives a reference to the same array, so changes affect the original array.
