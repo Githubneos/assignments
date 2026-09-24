@@ -1,0 +1,141 @@
+import java.util.Scanner;
+
+public class StoreSalesAnalyzer {
+
+    // Part 2
+    public static void printSales(double[][] sales) {
+        for (int row = 0; row < sales.length; row++) {
+            for (int column = 0; column < sales[row].length; column++)
+                System.out.printf("%.2f ", sales[row][column]);
+            System.out.println();
+        }
+    }
+
+    // Part 3
+    public static double totalSales(double[][] sales) {
+        double total = 0;
+
+        for (int row = 0; row < sales.length; row++)
+            for (int column = 0; column < sales[row].length; column++)
+                total += sales[row][column];
+
+        return total;
+    }
+
+    // Part 4
+    public static double rowTotal(double[][] sales, int row) {
+        double total = 0;
+
+        for (int column = 0; column < sales[row].length; column++)
+            total += sales[row][column];
+
+        return total;
+    }
+
+    // Part 5
+    public static double columnTotal(double[][] sales, int column) {
+        double total = 0;
+
+        for (int row = 0; row < sales.length; row++)
+            total += sales[row][column];
+
+        return total;
+    }
+
+    // Part 6
+    public static int bestStore(double[][] sales) {
+        int best = 0;
+
+        for (int row = 1; row < sales.length; row++)
+            if (rowTotal(sales, row) > rowTotal(sales, best))
+                best = row;
+
+        return best;
+    }
+
+    // Part 7
+    public static double findMaximum(double[][] sales) {
+        double max = sales[0][0];
+
+        for (int row = 0; row < sales.length; row++)
+            for (int column = 0; column < sales[row].length; column++)
+                if (sales[row][column] > max)
+                    max = sales[row][column];
+
+        return max;
+    }
+
+    public static int[] findMaximumPosition(double[][] sales) {
+        int[] position = {0, 0};
+
+        for (int row = 0; row < sales.length; row++)
+            for (int column = 0; column < sales[row].length; column++)
+                if (sales[row][column] > sales[position[0]][position[1]]) {
+                    position[0] = row;
+                    position[1] = column;
+                }
+
+        return position;
+    }
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        // Part 1
+        double[][] sales = new double[4][7];
+
+        for (int row = 0; row < sales.length; row++) {
+            for (int column = 0; column < sales[row].length; column++) {
+                do {
+                    System.out.print("Store " + row + ", Day " + column + ": ");
+                    sales[row][column] = input.nextDouble();
+                } while (sales[row][column] < 0);
+            }
+        }
+
+        // Part 2
+        printSales(sales);
+
+        // Part 8
+        double total = totalSales(sales);
+
+        System.out.println("Overall sales: " + total);
+        System.out.println("Average sale: " + total / (4 * 7));
+
+        for (int row = 0; row < sales.length; row++)
+            System.out.println("Store " + row + " total: " + rowTotal(sales, row));
+
+        for (int column = 0; column < sales[0].length; column++)
+            System.out.println("Day " + column + " total: " + columnTotal(sales, column));
+
+        int best = bestStore(sales);
+        System.out.println("Best store: " + best);
+
+        double maximum = findMaximum(sales);
+        int[] position = findMaximumPosition(sales);
+
+        System.out.println("Largest sale: " + maximum);
+        System.out.println("Position: [" + position[0] + "][" + position[1] + "]");
+
+        // Part 9
+        double[][] irregularSales = {
+            {120.0, 145.0, 160.0},
+            {90.0, 105.0},
+            {200.0, 210.0, 220.0, 230.0},
+            {75.0}
+        };
+
+        printSales(irregularSales);
+        System.out.println("Irregular total: " + totalSales(irregularSales));
+
+        input.close();
+    }
+}
+
+## Check Your Understanding
+1) First index: It represents the store/row.
+2) Nested loops: One loop goes through rows and the other goes through columns.
+3) Row vs. column total: A row total is one store's sales. A column total is one day's sales across all stores.
+4) Different row lengths: Java 2D arrays are actually arrays of arrays, so each row can have a different length.
+5) sales[row].length: It gets the actual number of columns in that specific row.
+6) Returning a position: Use an int[] containing the row and column indexes.
