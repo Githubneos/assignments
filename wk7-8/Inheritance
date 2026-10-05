@@ -1,0 +1,21 @@
+public class StudentDerivationFromPerson {
+   public static void main(String[] args) {
+      Student courseStudent = new Student();
+
+      courseStudent.setName("Smith");
+      courseStudent.setAge(20);
+      courseStudent.setID(9999);
+
+      courseStudent.printAll();
+      System.out.println(", ID: " + courseStudent.getID());
+   }
+}
+
+## Check Your Understanding
+1) Superclass: Person
+2) Subclass: Student
+3) extends Person means that Student inherits accessible methods and members from Person.
+4) courseStudent can call setName() because Student inherits it from Person.
+5) courseStudent can call setAge() for the same reason.
+6) Use setID(9999) to assign the student ID.
+7) The Student object can use printAll() because it is inherited from Person, and getID() because it is defined directly in Student.
