@@ -1,0 +1,117 @@
+import java.util.Scanner;
+
+// PART 1
+
+class Course {
+   private String courseNumber;
+   private String courseTitle;
+
+   public void setCourseNumber(String number) {
+      courseNumber = number;
+   }
+
+   public String getCourseNumber() {
+      return courseNumber;
+   }
+
+   public void setCourseTitle(String title) {
+      courseTitle = title;
+   }
+
+   public String getCourseTitle() {
+      return courseTitle;
+   }
+
+
+// PART 2
+
+   public void PrintInfo() {
+      System.out.println("Course Information:");
+      System.out.println("   Course Number: " + courseNumber);
+      System.out.println("   Course Title: " + courseTitle);
+   }
+}
+
+
+// PART 3
+
+class OfferedCourse extends Course {
+   private String instructorName;
+   private String location;
+   private String classTime;
+
+
+// PART 4
+
+   public void setInstructorName(String name) {
+      instructorName = name;
+   }
+
+   public String getInstructorName() {
+      return instructorName;
+   }
+
+   public void setLocation(String room) {
+      location = room;
+   }
+
+   public String getLocation() {
+      return location;
+   }
+
+   public void setClassTime(String time) {
+      classTime = time;
+   }
+
+   public String getClassTime() {
+      return classTime;
+   }
+
+   public void PrintInfo() {
+      super.PrintInfo();
+      System.out.println("   Instructor Name: " + instructorName);
+      System.out.println("   Location: " + location);
+      System.out.println("   Class Time: " + classTime);
+   }
+}
+
+
+// PART 5
+
+public class CourseInformation {
+   public static void main(String[] args) {
+      Scanner scnr = new Scanner(System.in);
+
+      Course course = new Course();
+      OfferedCourse offeredCourse = new OfferedCourse();
+
+      course.setCourseNumber(scnr.nextLine());
+      course.setCourseTitle(scnr.nextLine());
+
+      offeredCourse.setCourseNumber(scnr.nextLine());
+      offeredCourse.setCourseTitle(scnr.nextLine());
+      offeredCourse.setInstructorName(scnr.nextLine());
+      offeredCourse.setLocation(scnr.nextLine());
+      offeredCourse.setClassTime(scnr.nextLine());
+
+      course.PrintInfo();
+      offeredCourse.PrintInfo();
+   }
+}
+
+// Check Your Understanding
+1) The Course class is the base class.
+
+2) The OfferedCourse class is the derived class.
+
+3) They are common information for all courses, so they only need to be defined once in Course.
+
+4) It means OfferedCourse inherits the accessible methods and fields from Course.
+
+5) Because OfferedCourse inherits those methods from Course.
+
+6 0instructorName, location, and classTime.
+
+7) They are private to protect the data and require getter and setter methods to access or change them.
+
+8) It means OfferedCourse is a specialized type of Course and inherits its functionality.
