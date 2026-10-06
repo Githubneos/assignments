@@ -1,0 +1,112 @@
+import java.util.Scanner;
+
+class Book {
+   private String title;
+   private String author;
+   private String publisher;
+   private String publicationDate;
+
+   public void setTitle(String bookTitle) {
+      title = bookTitle;
+   }
+
+   public String getTitle() {
+      return title;
+   }
+
+   public void setAuthor(String bookAuthor) {
+      author = bookAuthor;
+   }
+
+   public String getAuthor() {
+      return author;
+   }
+
+   public void setPublisher(String bookPublisher) {
+      publisher = bookPublisher;
+   }
+
+   public String getPublisher() {
+      return publisher;
+   }
+
+   public void setPublicationDate(String date) {
+      publicationDate = date;
+   }
+
+   public String getPublicationDate() {
+      return publicationDate;
+   }
+
+   public void printInfo() {
+      System.out.println("Book Information:");
+      System.out.println("   Book Title: " + title);
+      System.out.println("   Author: " + author);
+      System.out.println("   Publisher: " + publisher);
+      System.out.println("   Publication Date: " + publicationDate);
+   }
+}
+
+class Encyclopedia extends Book {
+   private String edition;
+   private int numPages;
+
+   public void setEdition(String bookEdition) {
+      edition = bookEdition;
+   }
+
+   public String getEdition() {
+      return edition;
+   }
+
+   public void setNumPages(int pages) {
+      numPages = pages;
+   }
+
+   public int getNumPages() {
+      return numPages;
+   }
+
+   @Override
+   public void printInfo() {
+      super.printInfo();
+      System.out.println("   Edition: " + edition);
+      System.out.println("   Number of Pages: " + numPages);
+   }
+}
+
+public class BookInformation {
+   public static void main(String[] args) {
+      Scanner scnr = new Scanner(System.in);
+
+      Book book = new Book();
+      Encyclopedia encyclopedia = new Encyclopedia();
+
+      book.setTitle(scnr.nextLine());
+      book.setAuthor(scnr.nextLine());
+      book.setPublisher(scnr.nextLine());
+      book.setPublicationDate(scnr.nextLine());
+
+      encyclopedia.setTitle(scnr.nextLine());
+      encyclopedia.setAuthor(scnr.nextLine());
+      encyclopedia.setPublisher(scnr.nextLine());
+      encyclopedia.setPublicationDate(scnr.nextLine());
+      encyclopedia.setEdition(scnr.nextLine());
+      encyclopedia.setNumPages(scnr.nextInt());
+
+      book.printInfo();
+      encyclopedia.printInfo();
+   }
+}
+
+// check your understanding
+
+1) Book
+2) Encyclopedia
+3)It means Encyclopedia inherits methods from Book.
+4)Title, author, publisher, and publication date.
+5)Edition and number of pages.
+6) To display the additional information specific to an encyclopedia.
+7)It tells Java that the method is overriding a method from the superclass.
+8)It calls the printInfo() method from the Book class.
+9)It avoids repeating code and allows the Encyclopedia class to reuse the Book class's method.
