@@ -1,0 +1,35 @@
+import java.util.Scanner;
+
+public class StepCounter {
+    public static double stepsToMiles(int steps) throws Exception {
+        if (steps < 0) {
+            throw new Exception("Exception: Negative step count entered.");
+        }
+
+        return steps / 2000.0;
+    }
+
+    public static void main(String[] args) {
+        Scanner scnr = new Scanner(System.in);
+        int steps = scnr.nextInt();
+
+        try {
+            double miles = stepsToMiles(steps);
+            System.out.printf("%.2f%n", miles);
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        scnr.close();
+    }
+}
+
+## Check Your Understanding 
+
+1) A double preserves fractional miles and decimal values.
+2) A negative step count is invalid because steps walked cannot be negative.
+3) throws Exception indicates that the method may throw an exception that must be handled or declared by the calling code.
+4) An exception thrown inside the try block transfers control to the matching catch block.
+5) Use e.getMessage() to retrieve the exception message.
+6) Integer division discards the fractional part, while floating-point division preserves it.
