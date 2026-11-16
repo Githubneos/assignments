@@ -1,0 +1,31 @@
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+
+public class SalaryGUI {
+    public static void main(String[] args) {
+        int hourlyWage = 20;
+
+        // Text field that shows the output
+        JTextField outputField = new JTextField();
+        outputField.setText("An hourly wage of " + hourlyWage + "/hr"
+                + " yields $" + (hourlyWage * 40 * 50) + "/yr.");
+        outputField.setEditable(false);
+
+        // Window
+        JFrame topFrame = new JFrame("Salary");
+        topFrame.add(outputField);
+        topFrame.pack();
+        topFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        topFrame.setVisible(true);
+    }
+}
+
+Check Your Understanding
+1) JFrame is the application window. It holds the other components.
+2) It is a text box that displays the program's output inside the window.
+3) The hourly rate and the yearly total shown in the window both change, because the total is calculated from hourlyWage.
+4) It makes the field read-only, so the user can see the result but cannot type over it.
+5) It resizes the window to fit its components.
+6) It makes the program end when the window is closed. Without it, the window disappears but the program can keep running in the background.
+7) The program runs, but the window never appears on screen.
+8) The yearly total increases by two weeks of pay. At $20/hr that is 2 × 40 × $20 = $1,600, so $40,000 becomes $41,600.
